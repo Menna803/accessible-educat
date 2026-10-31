@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Accessible Education | Every Student Belongs</title>
+
+<style>
+:root{
+  --navy:#142b4a;
+  --blue:#2463a6;
+  --teal:#20a695;
+  --cream:#f7f9fc;
+  --text:#263548;
+  --muted:#64748b;
+  --white:#ffffff;
+  --line:#e4eaf1;
+  --shadow:0 12px 35px rgba(20,43,74,.09);
+}
+
+*{box-sizing:border-box;scroll-behavior:smooth}
+
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--text);
+  font-family:Arial,Helvetica,sans-serif;
+  line-height:1.7;
+  transition:background .3s,color .3s;
+}
+
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+
+.skip{
+  position:absolute;
+  left:-999px;
+  top:8px;
+  background:white;
+  padding:10px;
+  z-index:1000;
+}
+.skip:focus{left:10px}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:white;
+  box-shadow:0 2px 15px rgba(0,0,0,.05);
+}
+
+.nav{
+  max-width:1180px;
+  margin:auto;
+  padding:15px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.logo{
+  font-weight:900;
+  font-size:21px;
+  color:var(--blue);
+  white-space:nowrap;
+}
+
+nav{
+  display:flex;
+  gap:17px;
+  flex-wrap:wrap;
+}
+
+nav a{
+  text-decoration:none;
+  font-size:14px;
+  font-weight:bold;
+  color:var(--text);
+  transition:.25s;
+}
+
+nav a:hover{color:var(--teal)}
+
+/* ACCESSIBILITY TOOLBAR - TOP OF PAGE */
+.accessibility-area{
+  background:#edf2f7;
+  border-bottom:1px solid var(--line);
+  padding:12px 20px;
+}
+
+.accessibility-inner{
+  max-width:1180px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  flex-wrap:wrap;
+}
+
+.accessibility-title{
+  color:var(--navy);
+  font-size:14px;
+  font-weight:bold;
+}
+
+.accessibility-toolbar{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  flex-wrap:wrap;
+}
+
+.accessibility-toolbar button{
+  border:1px solid #d7e0ea;
+  border-radius:9px;
+  background:white;
+  color:#173653;
+  padding:8px 12px;
+  min-height:38px;
+  font-size:13px;
+  font-weight:bold;
+  transition:all .25s ease;
+}
+
+.accessibility-toolbar button:hover{
+  background:var(--teal);
+  border-color:var(--teal);
+  color:white;
+  transform:translateY(-2px);
+}
+
+.accessibility-toolbar button:focus-visible{
+  outline:3px solid #e6a23c;
+  outline-offset:3px;
+}
+
+/* DARK MODE */
+body.dark{
+  --cream:#101a29;
+  --text:#edf3fa;
+  --muted:#bdc9d8;
+  --white:#1b2a3d;
+  --line:#34465b;
+  --navy:#e8f1ff;
+  --shadow:0 12px 35px rgba(0,0,0,.2);
+  background:var(--cream);
+  color:var(--text);
+}
+
+body.dark header,
+body.dark .card,
+body.dark .tool-panel,
+body.dark .stat,
+body.dark .quote,
+body.dark .voice,
+body.dark .note{
+  background:var(--white);
+  color:var(--text);
+}
+
+body.dark .accessibility-area{
+  background:#17263a;
+  border-color:#34465b;
+}
+
+body.dark .accessibility-title{color:#e8f1ff}
+
+body.dark .accessibility-toolbar button{
+  background:#263b53;
+  color:white;
+  border-color:#40536a;
+}
+
+body.dark .card h3,
+body.dark .section-head h2,
+body.dark .game-question{
+  color:var(--navy);
+}
+
+body.dark input,
+body.dark select,
+body.dark textarea{
+  background:#24364c;
+  color:white;
+  border-color:#40536a;
+}
+
+body.dark .tag{
+  background:#244b4c;
+  color:#a9eee1;
+}
+
+/* OTHER ACCESSIBILITY SETTINGS */
+body.large-text{font-size:19px}
+body.easy-reading{letter-spacing:.5px;line-height:2}
+
+body.high-contrast{
+  --cream:#fff;
+  --white:#fff;
+  --text:#000;
+  --muted:#222;
+  --navy:#000;
+  --line:#000;
+}
+
+body.high-contrast .card,
+body.high-contrast .tool-panel,
+body.high-contrast .stat,
+body.high-contrast .quote,
+body.high-contrast .voice{
+  border:2px solid #000;
+}
+
+.hero{
+  min-height:590px;
+  display:flex;
+  align-items:center;
+  color:white;
+  background:
+  linear-gradient(90deg,rgba(9,29,53,.91),rgba(9,29,53,.35)),
+  url("https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1800&q=85")
+  center/cover;
+}
+
+.hero-inner{
+  max-width:1180px;
+  margin:auto;
+  padding:80px 25px;
+  width:100%;
+}
+
+.eyebrow{
+  color:#8de4d5;
+  text-transform:uppercase;
+  letter-spacing:3px;
+  font-size:13px;
+  font-weight:bold;
+}
+
+.hero h1{
+  font-size:clamp(42px,7vw,76px);
+  line-height:1.08;
+  max-width:760px;
+  margin:18px 0;
+}
+
+.hero p{
+  font-size:19px;
+  max-width:650px;
+  color:#e7edf5;
+}
+
+.btn{
+  display:inline-block;
+  border:0;
+  border-radius:30px;
+  padding:13px 23px;
+  background:var(--teal);
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
+  margin:8px 7px 0 0;
+  transition:.25s;
+}
+
+.btn:hover{
+  background:#168b7d;
+  transform:translateY(-3px);
+}
+
+.btn.secondary{
+  background:white;
+  color:#173653;
+}
+
+section{
+  max-width:1180px;
+  margin:auto;
+  padding:75px 24px;
+}
+
+.section-head{
+  text-align:center;
+  max-width:760px;
+  margin:0 auto 38px;
+}
+
+.section-head h2{
+  font-size:34px;
+  color:var(--navy);
+  margin:0 0 10px;
+}
+
+.section-head p{color:var(--muted)}
+
+.quote{
+  max-width:1000px;
+  margin:-35px auto 20px;
+  padding:35px;
+  background:white;
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  text-align:center;
+  position:relative;
+  font-size:23px;
+  font-weight:bold;
+  color:var(--navy);
+}
+
+.quote span{
+  display:block;
+  font-size:14px;
+  color:var(--muted);
+  font-weight:normal;
+  margin-top:12px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+}
+
+.card{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  transition:transform .35s ease,box-shadow .35s ease;
+}
+
+.card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 20px 45px rgba(20,43,74,.16);
+}
+
+.card img{
+  width:100%;
+  height:210px;
+  object-fit:cover;
+  display:block;
+  transition:transform .5s ease;
+}
+
+.card:hover img{transform:scale(1.045)}
+
+.card-content{padding:22px}
+
+.card h3{
+  margin:0 0 9px;
+  color:var(--navy);
+}
+
+.card p{
+  margin:0;
+  color:var(--muted);
+}
+
+.tag{
+  display:inline-block;
+  padding:5px 10px;
+  border-radius:20px;
+  background:#e4f5f1;
+  color:#126e63;
+  font-size:12px;
+  font-weight:bold;
+  margin:0 5px 8px 0;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+  margin-top:25px;
+}
+
+.stat{
+  background:white;
+  padding:25px 14px;
+  border-radius:16px;
+  text-align:center;
+  border:1px solid var(--line);
+  transition:.3s;
+}
+
+.stat:hover{
+  transform:translateY(-7px);
+  box-shadow:var(--shadow);
+}
+
+.stat strong{
+  display:block;
+  color:var(--teal);
+  font-size:34px;
+}
+
+.stat small{color:var(--muted)}
+
+.note{
+  background:white;
+  border-left:4px solid var(--teal);
+  padding:16px 20px;
+  border-radius:8px;
+  color:var(--muted);
+  margin-top:22px;
+}
+
+.barriers .card{padding:25px}
+.icon{font-size:34px}
+
+.solution{
+  background:linear-gradient(135deg,#16385d,#1d6d79);
+  color:white;
+  border-radius:25px;
+  padding:45px;
+}
+
+.solution h2{
+  font-size:35px;
+  margin-top:0;
+}
+
+.solution p{color:#e4f1f4}
+
+.solution-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+  margin-top:25px;
+}
+
+.solution-item{
+  background:rgba(255,255,255,.12);
+  padding:20px;
+  border-radius:14px;
+  transition:.3s;
+}
+
+.solution-item:hover{
+  background:rgba(255,255,255,.2);
+  transform:translateY(-5px);
+}
+
+.solution-item h3{margin-top:0}
+
+.tool-panel{
+  background:white;
+  padding:25px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  margin-bottom:20px;
+  box-shadow:var(--shadow);
+}
+
+select,input,textarea{
+  width:100%;
+  padding:12px;
+  border:1px solid var(--line);
+  border-radius:9px;
+  background:#fbfcfe;
+  color:var(--text);
+  margin:7px 0 12px;
+}
+
+textarea{
+  min-height:110px;
+  resize:vertical;
+}
+
+.result{
+  background:#e9f7f4;
+  color:#174c48;
+  padding:18px;
+  border-radius:12px;
+  margin-top:15px;
+  display:none;
+}
+
+.game-question{
+  font-size:20px;
+  font-weight:bold;
+  color:var(--navy);
+}
+
+.game-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.game-actions button{
+  flex:1;
+  min-width:120px;
+}
+
+.answer{
+  margin-top:15px;
+  font-weight:bold;
+}
+
+.voice-list{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.voice{
+  background:white;
+  border:1px solid var(--line);
+  padding:17px;
+  border-radius:12px;
+  animation:appear .4s ease;
+}
+
+footer{
+  background:#142b4a;
+  color:white;
+  text-align:center;
+  padding:35px 20px;
+}
+
+footer p{color:#d2deeb}
+
+.creator{
+  margin-top:22px;
+  padding-top:18px;
+  border-top:1px solid rgba(255,255,255,.2);
+}
+.creator-label{
+  color:#b9d9f2;
+  text-transform:uppercase;
+  letter-spacing:3px;
+  font-size:12px;
+  margin-bottom:4px;
+}
+.creator-name{
+  color:#8de4d5;
+  font-size:21px;
+  font-weight:bold;
+  margin:0;
+}
+
+:focus-visible{
+  outline:3px solid #e6a23c;
+  outline-offset:3px;
+}
+
+/* SCROLL ANIMATION */
+.reveal{
+  opacity:0;
+  transform:translateY(35px);
+  transition:opacity .7s ease,transform .7s ease;
+}
+
+.reveal.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+@keyframes appear{
+  from{opacity:0;transform:translateY(12px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+@media(max-width:850px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  nav{gap:9px}
+  .solution-grid{grid-template-columns:1fr}
+}
+
+@media(max-width:580px){
+  .nav{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  nav{gap:9px}
+
+  .accessibility-inner{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .accessibility-toolbar{
+    width:100%;
+  }
+
+  .accessibility-toolbar button{
+    flex:1;
+    min-width:38px;
+    padding:8px;
+  }
+
+  .grid{grid-template-columns:1fr}
+  .hero{min-height:530px}
+
+  .quote{
+    margin:15px;
+    padding:25px;
+    font-size:19px;
+  }
+
+  section{padding:55px 17px}
+  .solution{padding:25px}
+}
+</style>
+</head>
+
+<body>
+
+<a class="skip" href="#main">Skip to main content</a>
+
+<header>
+  <div class="nav">
+    <div class="logo">♿ Accessible Education</div>
+    <nav aria-label="Main navigation">
+      <a href="#about">About</a>
+      <a href="#research">Research</a>
+      <a href="#barriers">Barriers</a>
+      <a href="#solution">Our Solution</a>
+      <a href="#challenge">Challenge</a>
+      <a href="#voice">Student Voice</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ACCESSIBILITY TOOLS AT THE TOP -->
+<div class="accessibility-area">
+  <div class="accessibility-inner">
+    <div class="accessibility-title">
+      ♿ Accessibility Tools
+    </div>
+
+    <div class="accessibility-toolbar">
+      <button onclick="changeText(1)" title="Increase text size">A+</button>
+      <button onclick="changeText(-1)" title="Decrease text size">A−</button>
+      <button onclick="toggleContrast()" title="High contrast">◐ Contrast</button>
+      <button onclick="toggleSpacing()" title="Easy reading">↕ Easy Read</button>
+      <button onclick="readPage()" title="Read page aloud">🔊 Read Page</button>
+      <button onclick="stopReading()" title="Stop reading">■ Stop</button>
+      <button onclick="toggleDark()" title="Dark mode">☾ Dark Mode</button>
+      <button onclick="resetTools()" title="Reset settings">↻ Reset</button>
+    </div>
+  </div>
+</div>
+
+<main id="main">
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Inclusion • Accessibility • Equal Opportunity</div>
+    <h1>Every Student Belongs. Every Dream Deserves a Chance.</h1>
+    <p>
+      Disability should never be a barrier to education, independence,
+      friendship, or success. Let's build university environments where
+      everyone can learn, participate, and belong.
+    </p>
+    <a class="btn" href="#research">Explore Our Research</a>
+    <a class="btn secondary" href="#solution">Discover Our Solution</a>
+  </div>
+</div>
+
+<div class="quote">
+  "Accessibility is not a favor. It is a right."
+  <span>Equal opportunities. Equal respect. A place for everyone.</span>
+</div>
+
+<section id="about">
+  <div class="section-head reveal">
+    <h2>Why This Project Matters</h2>
+    <p>
+      Higher education should open doors, not create barriers.
+      Students with disabilities have the same right to learn, develop
+      their talents, make friends, and build their future.
+    </p>
+  </div>
+
+  <div class="grid">
+    <article class="card reveal">
+      <img src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=900&q=85" alt="University students learning together">
+      <div class="card-content">
+        <span class="tag">Equal Education</span>
+        <h3>Education for Everyone</h3>
+        <p>Every student deserves access to quality education and the support needed to succeed.</p>
+      </div>
+    </article>
+
+    <article class="card reveal">
+      <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=900&q=85" alt="Students collaborating as a team">
+      <div class="card-content">
+        <span class="tag">Belonging</span>
+        <h3>Inclusion in University Life</h3>
+        <p>Being included means participating in classes, activities, friendships, and decisions.</p>
+      </div>
+    </article>
+
+    <article class="card reveal">
+      <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=900&q=85" alt="A team working together">
+      <div class="card-content">
+        <span class="tag">Opportunity</span>
+        <h3>Ability, Talent, and Potential</h3>
+        <p>A person's disability does not define their ambitions, skills, or contribution to society.</p>
+      </div>
+    </article>
+  </div>
+
+  <div class="note reveal">
+    Our message is simple: we do not need to change people to fit the university.
+    We need to remove the barriers that prevent people from participating.
+  </div>
+</section>
+
+<section id="research">
+  <div class="section-head reveal">
+    <h2>What Our Research Revealed</h2>
+    <p>
+      Our research explored accessibility and inclusion for students with
+      disabilities in higher education. It brought together studies about
+      physical environments, digital access, academic experiences, and
+      social participation.
+    </p>
+  </div>
+
+  <div class="stats">
+    <div class="stat reveal">
+      <strong>14</strong>
+      <small>Studies included in a systematic review discussed in our research</small>
+    </div>
+    <div class="stat reveal">
+      <strong>322</strong>
+      <small>Articles examined in a bibliometric and content analysis</small>
+    </div>
+    <div class="stat reveal">
+      <strong>15</strong>
+      <small>Students involved in an eye-tracking experiment mentioned in the research</small>
+    </div>
+    <div class="stat reveal">
+      <strong>60%+</strong>
+      <small>Participants in cited field measurements reporting physical accessibility problems</small>
+    </div>
+  </div>
+
+  <div class="note reveal">
+    These figures are presented as reported in the studies collected for our project.
+    They refer to different research samples and methods, not one single survey.
+    The 60%+ figure relates to the field measurements discussed in our research,
+    including studies in Ethiopian and Sri Lankan universities.
+  </div>
+
+  <div class="grid" style="margin-top:28px">
+    <article class="card reveal">
+      <div class="card-content">
+        <span class="tag">Finding 01</span>
+        <h3>Physical Accessibility Matters</h3>
+        <p>Inaccessible entrances, stairs, elevators, and restrooms can prevent students from reaching and using university facilities independently.</p>
+      </div>
+    </article>
+
+    <article class="card reveal">
+      <div class="card-content">
+        <span class="tag">Finding 02</span>
+        <h3>Digital Barriers Exist</h3>
+        <p>Websites, learning platforms, and digital materials may not work well with screen readers or other assistive technologies.</p>
+      </div>
+    </article>
+
+    <article class="card reveal">
+      <div class="card-content">
+        <span class="tag">Finding 03</span>
+        <h3>Support and Attitudes Matter</h3>
+        <p>Limited academic support, lack of awareness, and negative attitudes can affect participation and the student experience.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="barriers">
+  <div class="section-head reveal">
+    <h2>Understanding the Barriers</h2>
+    <p>Our research groups the challenges into four connected areas.</p>
+  </div>
+
+  <div class="grid barriers">
+    <article class="card reveal">
+      <div class="icon">🏛️</div>
+      <h3>Physical Barriers</h3>
+      <p>Steps without ramps, inaccessible classrooms, elevators, pathways, and restrooms.</p>
+    </article>
+
+    <article class="card reveal">
+      <div class="icon">💻</div>
+      <h3>Digital Barriers</h3>
+      <p>Inaccessible websites, learning platforms, documents, videos, and online services.</p>
+    </article>
+
+    <article class="card reveal">
+      <div class="icon">📚</div>
+      <h3>Academic Barriers</h3>
+      <p>Limited learning accommodations, unsuitable materials, and insufficient individual support.</p>
+    </article>
+
+    <article class="card reveal">
+      <div class="icon">🤝</div>
+      <h3>Social Barriers</h3>
+      <p>Negative assumptions, lack of awareness, exclusion, and limited participation in campus activities.</p>
+    </article>
+  </div>
+</section>
+
+<section id="rights">
+  <div class="section-head reveal">
+    <h2>Rights, Not Privileges</h2>
+    <p>
+      Accessibility is connected to dignity, equality, and human rights.
+      It is not something that students should have to earn or beg for.
+    </p>
+  </div>
+
+  <div class="solution reveal">
+    <h2>Everyone has the right to learn and participate.</h2>
+    <p>
+      Article 24 of the United Nations Convention on the Rights of Persons
+      with Disabilities recognizes the right to education and calls for
+      inclusive education systems at all levels, including higher education.
+    </p>
+    <p>
+      This means removing discrimination, providing reasonable accommodation,
+      and making the support needed for effective learning available.
+    </p>
+    <a class="btn" href="https://www.un.org/development/desa/disabilities/convention-on%20the-rights-of-persons-with-disabilities/article-24-education.html" target="_blank" rel="noopener">Read Article 24</a>
+  </div>
+</section>
+
+<section id="solution">
+  <div class="section-head reveal">
+    <h2>Our Proposed Solution</h2>
+    <p>
+      We developed the concept of Accessible Education: a practical website
+      designed to make accessibility information easier to find and understand.
+    </p>
+  </div>
+
+  <div class="solution reveal">
+    <h2>Accessible Education</h2>
+    <p>
+      Our website responds to the research findings by organizing information
+      about accessible facilities, digital accessibility, academic support,
+      and ways to report barriers.
+    </p>
+
+    <div class="solution-grid">
+      <div class="solution-item">
+        <h3>🔎 Find Support</h3>
+        <p>Explore guidance and resources based on different accessibility needs.</p>
+      </div>
+      <div class="solution-item">
+        <h3>🏫 Accessibility Information</h3>
+        <p>Learn what accessible facilities and services should include.</p>
+      </div>
+      <div class="solution-item">
+        <h3>🗣️ Report a Barrier</h3>
+        <p>Share an accessibility issue and raise awareness about barriers.</p>
+      </div>
+      <div class="solution-item">
+        <h3>📢 Raise Awareness</h3>
+        <p>Use challenges and student voices to encourage a more inclusive culture.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="support">
+  <div class="section-head reveal">
+    <h2>Find the Support You Need</h2>
+    <p>Choose an area to explore helpful accessibility ideas and resources.</p>
+  </div>
+
+  <div class="tool-panel reveal">
+    <label for="supportType"><strong>What kind of support are you looking for?</strong></label>
+    <select id="supportType">
+      <option value="">Choose an option</option>
+      <option value="mobility">Mobility and physical access</option>
+      <option value="visual">Visual accessibility</option>
+      <option value="hearing">Hearing accessibility</option>
+      <option value="learning">Learning and academic support</option>
+      <option value="digital">Digital accessibility</option>
+    </select>
+    <button class="btn" onclick="findSupport()">Find Suggestions</button>
+    <div class="result" id="supportResult" aria-live="polite"></div>
+  </div>
+
+  <div class="section-head reveal">
+    <h2>Accessibility Checklist</h2>
+    <p>Explore examples of features that can make a university environment more accessible.</p>
+  </div>
+
+  <div class="grid">
+    <article class="card reveal"><div class="card-content"><h3>♿ Physical Facilities</h3><p>Ramps, elevators, accessible restrooms, clear pathways, and suitable classroom layouts.</p><span class="tag">Physical Access</span></div></article>
+    <article class="card reveal"><div class="card-content"><h3>👁️ Visual Access</h3><p>Screen-reader-compatible pages, image descriptions, readable contrast, and accessible documents.</p><span class="tag">Digital Access</span></div></article>
+    <article class="card reveal"><div class="card-content"><h3>🧏 Hearing Access</h3><p>Captions, transcripts, sign-language support where available, and clear visual announcements.</p><span class="tag">Communication</span></div></article>
+    <article class="card reveal"><div class="card-content"><h3>📝 Academic Support</h3><p>Accessible learning materials, reasonable accommodations, and flexible ways to participate.</p><span class="tag">Learning</span></div></article>
+    <article class="card reveal"><div class="card-content"><h3>🌐 Accessible Websites</h3><p>Keyboard navigation, clear headings, readable text, labels, and assistive technology compatibility.</p><span class="tag">Technology</span></div></article>
+    <article class="card reveal"><div class="card-content"><h3>🤝 Inclusive Community</h3><p>Awareness, respectful communication, student participation, and equal access to activities.</p><span class="tag">Belonging</span></div></article>
+  </div>
+
+  <p class="note reveal">
+    The checklist describes accessibility features to look for. It does not verify
+    that a particular university building or service has these features.
+  </p>
+</section>
+
+<section id="challenge">
+  <div class="section-head reveal">
+    <h2>Accessibility: Myth or Fact?</h2>
+    <p>Test your knowledge and discover why inclusion matters.</p>
+  </div>
+
+  <div class="tool-panel reveal">
+    <div id="questionCount" class="tag">Question 1 of 5</div>
+    <p class="game-question" id="questionText">Accessibility benefits only people with disabilities.</p>
+
+    <div class="game-actions">
+      <button class="btn" onclick="answerQuiz('Myth')">Myth</button>
+      <button class="btn secondary" onclick="answerQuiz('Fact')">Fact</button>
+    </div>
+
+    <div class="answer" id="quizFeedback" aria-live="polite"></div>
+    <button class="btn" id="nextQuestion" onclick="nextQuiz()" style="display:none">Next Question</button>
+    <p id="quizScore" class="tag" style="display:none"></p>
+  </div>
+</section>
+
+<section id="report">
+  <div class="section-head reveal">
+    <h2>Speak Up: Report an Accessibility Barrier</h2>
+    <p>
+      Sharing an accessibility issue can help others understand what needs
+      to improve. Please do not include private or sensitive information.
+    </p>
+  </div>
+
+  <div class="tool-panel reveal">
+    <label for="barrierType"><strong>Type of barrier</strong></label>
+    <select id="barrierType">
+      <option>Physical accessibility</option>
+      <option>Digital accessibility</option>
+      <option>Academic support</option>
+      <option>Social inclusion</option>
+      <option>Other</option>
+    </select>
+
+    <label for="barrierPlace"><strong>General location or service</strong></label>
+    <input id="barrierPlace" placeholder="Example: Library entrance">
+
+    <label for="barrierDescription"><strong>Describe the barrier</strong></label>
+    <textarea id="barrierDescription" placeholder="Explain what makes access difficult..."></textarea>
+
+    <button class="btn" onclick="submitBarrier()">Submit Report</button>
+    <div id="reportMessage" class="result" aria-live="polite"></div>
+  </div>
+</section>
+
+<section id="voice">
+  <div class="section-head reveal">
+    <h2>Student Voice Wall</h2>
+    <p>
+      Inclusion starts by listening. Share a short idea about how universities
+      can become more accessible and welcoming.
+    </p>
+  </div>
+
+  <div class="tool-panel reveal">
+    <label for="studentIdea"><strong>Your idea or message</strong></label>
+    <textarea id="studentIdea" placeholder="I believe an inclusive university should..."></textarea>
+    <button class="btn" onclick="postIdea()">Share Your Voice</button>
+    <div id="voiceWall" class="voice-list" style="margin-top:20px" aria-live="polite"></div>
+  </div>
+</section>
+
+<section id="sdgs">
+  <div class="section-head reveal">
+    <h2>Our Contribution to the SDGs</h2>
+    <p>Our project connects accessibility in higher education to three Sustainable Development Goals.</p>
+  </div>
+
+  <div class="grid">
+    <article class="card reveal">
+      <div class="card-content">
+        <span class="tag">SDG 4</span>
+        <h3>Quality Education</h3>
+        <p>Promote inclusive and equitable quality education and equal learning opportunities.</p>
+      </div>
+    </article>
+
+    <article class="card reveal">
+      <div class="card-content">
+        <span class="tag">SDG 10</span>
+        <h3>Reduced Inequalities</h3>
+        <p>Reduce barriers that prevent students with disabilities from participating equally.</p>
+      </div>
+    </article>
+
+    <article class="card reveal">
+      <div class="card-content">
+        <span class="tag">SDG 11</span>
+        <h3>Sustainable Cities and Communities</h3>
+        <p>Encourage accessible, inclusive environments and facilities for everyone.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="message">
+  <div class="solution reveal">
+    <h2>A More Accessible World Starts With Us.</h2>
+    <p>
+      We are not asking for special treatment. We are asking for equal
+      opportunities, accessible spaces, and respect.
+    </p>
+    <p>
+      A student should be able to focus on learning, not on figuring out
+      how to enter a building, read a document, or be included in a class.
+    </p>
+    <h3>Different abilities. Equal rights. Shared future.</h3>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <h2>Accessible Education</h2>
+  <p>Every student belongs. Every voice matters.</p>
+  <p>Created as a student project supporting SDGs 4, 10, and 11.</p>
+  <small>Accessibility is a right, not a privilege.</small>
+
+  <div class="creator">
+    <p class="creator-label">Created by</p>
+    <h3 class="creator-name">ENG. Mennatallah Abdelhalim</h3>
+  </div>
+</footer>
+
+<script>
+
+// FIND SUPPORT
+const supportInfo={
+ mobility:"Look for step-free entrances, ramps, elevators, accessible restrooms, clear routes, and suitable classroom layouts. Ask the relevant university service about available accommodations.",
+ visual:"Useful options include screen-reader-compatible websites, alternative text for images, readable contrast, keyboard navigation, and accessible digital documents.",
+ hearing:"Useful options include captions, transcripts, written instructions, visual announcements, and sign-language support where available.",
+ learning:"Ask about accessible learning materials, reasonable academic accommodations, clear instructions, flexible participation methods, and available student support services.",
+ digital:"Digital content should support keyboard navigation, screen readers, captions, meaningful headings, clear labels, and readable contrast."
+};
+
+function findSupport(){
+  const type=document.getElementById("supportType").value;
+  const result=document.getElementById("supportResult");
+
+  result.style.display="block";
+
+  if(!type){
+    result.textContent="Please choose an option first.";
+    return;
+  }
+
+  result.textContent=supportInfo[type];
+}
+
+// MYTH OR FACT QUIZ
+const quiz=[
+ {q:"Accessibility benefits only people with disabilities.",a:"Myth",why:"Accessible design can help many people, including older adults, people with temporary injuries, and people using different devices."},
+ {q:"Students with disabilities have the right to inclusive education.",a:"Fact",why:"The UN Convention on the Rights of Persons with Disabilities recognizes the right to education without discrimination."},
+ {q:"A website can be inaccessible even if it looks beautiful.",a:"Fact",why:"A website also needs readable content, keyboard access, clear labels, captions, and compatibility with assistive technologies."},
+ {q:"Inclusion means allowing students to participate in university life.",a:"Fact",why:"Inclusion involves learning, social activities, communication, and equal participation."},
+ {q:"Accessibility is only the responsibility of the student with a disability.",a:"Myth",why:"Universities and communities also have responsibilities to identify and remove barriers."}
+];
+
+let quizIndex=0;
+let quizPoints=0;
+let answered=false;
+
+function showQuiz(){
+  document.getElementById("questionText").textContent=quiz[quizIndex].q;
+  document.getElementById("questionCount").textContent=`Question ${quizIndex+1} of ${quiz.length}`;
+  document.getElementById("quizFeedback").textContent="";
+  document.getElementById("nextQuestion").style.display="none";
+  document.getElementById("quizScore").style.display="none";
+  answered=false;
+}
+
+function answerQuiz(choice){
+  if(answered)return;
+
+  answered=true;
+  const current=quiz[quizIndex];
+  const correct=choice===current.a;
+
+  if(correct)quizPoints++;
+
+  document.getElementById("quizFeedback").textContent=
+    (correct?"Correct! ":"Not quite. ")+current.why;
+
+  document.getElementById("nextQuestion").style.display="inline-block";
+  document.getElementById("nextQuestion").textContent=
+    quizIndex===quiz.length-1?"See My Result":"Next Question";
+}
+
+function nextQuiz(){
+  if(!answered)return;
+
+  if(quizIndex<quiz.length-1){
+    quizIndex++;
+    showQuiz();
+  }else{
+    document.getElementById("questionText").textContent=
+      "Thank you for taking the challenge!";
+
+    document.getElementById("quizFeedback").textContent=
+      "Keep learning and help make inclusion part of everyday life.";
+
+    document.getElementById("nextQuestion").style.display="none";
+
+    const score=document.getElementById("quizScore");
+    score.style.display="inline-block";
+    score.textContent=`Your score: ${quizPoints} / ${quiz.length}`;
+  }
+}
+
+// REPORT AN ACCESSIBILITY BARRIER
+function submitBarrier(){
+  const type=document.getElementById("barrierType").value;
+  const place=document.getElementById("barrierPlace").value.trim();
+  const desc=document.getElementById("barrierDescription").value.trim();
+  const msg=document.getElementById("reportMessage");
+
+  msg.style.display="block";
+
+  if(!place||!desc){
+    msg.textContent="Please fill in the location/service and description.";
+    return;
+  }
+
+  const item=document.createElement("div");
+  item.className="voice";
+
+  const heading=document.createElement("strong");
+  heading.textContent=type+" — "+place;
+
+  const paragraph=document.createElement("p");
+  paragraph.textContent=desc;
+
+  item.append(heading,paragraph);
+  document.getElementById("report").appendChild(item);
+
+  msg.textContent="Thank you. Your report has been added to the page.";
+
+  document.getElementById("barrierPlace").value="";
+  document.getElementById("barrierDescription").value="";
+}
+
+// STUDENT VOICE WALL
+function postIdea(){
+  const field=document.getElementById("studentIdea");
+  const value=field.value.trim();
+
+  if(!value){
+    alert("Please write your idea first.");
+    return;
+  }
+
+  const card=document.createElement("div");
+  card.className="voice";
+
+  const p=document.createElement("p");
+  p.textContent="“"+value+"”";
+
+  const label=document.createElement("small");
+  label.textContent="Student message";
+
+  card.append(p,label);
+  document.getElementById("voiceWall").prepend(card);
+
+  field.value="";
+}
+
+// ACCESSIBILITY TOOLBAR
+let textSize=16;
+
+function changeText(amount){
+  textSize=Math.min(24,Math.max(14,textSize+amount));
+  document.body.style.fontSize=textSize+"px";
+}
+
+function toggleContrast(){
+  document.body.classList.toggle("high-contrast");
+}
+
+function toggleSpacing(){
+  document.body.classList.toggle("easy-reading");
+}
+
+function toggleDark(){
+  document.body.classList.toggle("dark");
+}
+
+function resetTools(){
+  textSize=16;
+  document.body.style.fontSize="";
+  document.body.classList.remove(
+    "large-text",
+    "high-contrast",
+    "easy-reading",
+    "dark"
+  );
+  stopReading();
+}
+
+// READ PAGE
+let speechParts=[];
+let speechPosition=0;
+let readingNow=false;
+
+function readPage(){
+  if(!("speechSynthesis" in window)){
+    alert("Your browser does not support Read Page. Please try Chrome or Edge.");
+    return;
+  }
+
+  stopReading();
+
+  const text=document.querySelector("main").innerText
+    .replace(/\s+/g," ").trim();
+
+  speechParts=text.match(/[^.!?]+[.!?]+|[^.!?]+$/g)||[];
+  speechPosition=0;
+  readingNow=true;
+
+  setTimeout(speakNext,150);
+}
+
+function speakNext(){
+  if(!readingNow||speechPosition>=speechParts.length){
+    readingNow=false;
+    return;
+  }
+
+  const sentence=speechParts[speechPosition++].trim();
+
+  if(!sentence){
+    speakNext();
+    return;
+  }
+
+  const speech=new SpeechSynthesisUtterance(sentence);
+  speech.lang="en-US";
+  speech.rate=0.92;
+
+  speech.onend=()=>{
+    if(readingNow)speakNext();
+  };
+
+  speech.onerror=()=>{
+    readingNow=false;
+  };
+
+  window.speechSynthesis.speak(speech);
+}
+
+function stopReading(){
+  readingNow=false;
+  speechParts=[];
+  speechPosition=0;
+
+  if("speechSynthesis" in window){
+    window.speechSynthesis.cancel();
+  }
+}
+
+// SCROLL REVEAL ANIMATION
+const revealObserver=new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("visible");
+      revealObserver.unobserve(entry.target);
+    }
+  });
+},{threshold:0.12});
+
+document.querySelectorAll(".reveal").forEach(element=>{
+  revealObserver.observe(element);
+});
+
+// INITIALIZE QUIZ
+showQuiz();
+
+window.addEventListener("beforeunload",stopReading);
+
+</script>
+
+</body>
+</html>
